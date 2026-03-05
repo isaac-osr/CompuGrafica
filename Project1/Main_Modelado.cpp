@@ -23,8 +23,8 @@ float movX=0.0f;
 float movY=0.0f;
 float movZ=-5.0f;
 float rot = 0.0f;
-float rotX = 0.0f;
-float rotZ = 0.0f;
+float rotX = 0.0f;//EJERCICIO - variable para rotar en X
+float rotZ = 0.0f;//EJERCICIO - variable para rotar en Z
 int main() {
 	glfwInit();
 	//Verificación de compatibilidad 
@@ -186,8 +186,8 @@ int main() {
 
 		view = glm::translate(view, glm::vec3(movX,movY, movZ));//En lugar de poner números pnemos las variables del inicio
 		view = glm::rotate(view, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));//rotacion sobre Y
-		view = glm::rotate(view, glm::radians(rotX), glm::vec3(1.0f, 0.0f, 0.0f));
-		view = glm::rotate(view, glm::radians(rotZ), glm::vec3(0.0f, 0.0f, 1.0f));
+		view = glm::rotate(view, glm::radians(rotX), glm::vec3(1.0f, 0.0f, 0.0f));//EJERCICIO ROTACION X
+		view = glm::rotate(view, glm::radians(rotZ), glm::vec3(0.0f, 0.0f, 1.0f));//EJERCICIO ROTACION Z
 
 		GLint modelLoc = glGetUniformLocation(ourShader.Program, "model");
 		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
@@ -208,7 +208,7 @@ int main() {
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(1.5f, -1.0f, 1.5f));
-		model = glm::scale(model, glm::vec3(0.1f, 2.0f, 0.1f));//PATA 1
+		model = glm::scale(model, glm::vec3(0.1f, 2.0f, 0.1f));//PATA 1 - El escalado es igula, cambian los signos de la traslación
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -267,12 +267,12 @@ int main() {
 		 rot -= 1.0f;
 
 	 ////mias
-	 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+	 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)//EJERCICIO Rotación en X
 		 rotX += 1.0f;
 	 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 		 rotX -= 1.0f;
 
-	 if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
+	 if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)//EJERCICIO Rotación en Z
 		 rotZ += 1.0f;
 	 if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
 		 rotZ -= 1.0f;
